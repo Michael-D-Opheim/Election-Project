@@ -5,6 +5,9 @@ A JavaFX program that simulates a command center for my imaginary election "camp
 
 This code is a work in-progress.
 
+
+--------------------------------------------------
+
 To-do:
 
 Stack:
