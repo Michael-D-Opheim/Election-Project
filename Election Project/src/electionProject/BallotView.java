@@ -46,6 +46,7 @@ public class BallotView extends VBox implements EventHandler<ActionEvent> {
 
 		ballotStack_TA = new TextArea();
 		ballotStack_TA.setEditable(false);
+		ballotStack_TA.setFont(Font.font("Arial", 16));
 		fillTA();
 
 		HBox addBallots_HB = new HBox();
@@ -67,7 +68,7 @@ public class BallotView extends VBox implements EventHandler<ActionEvent> {
 
 		countBallots_Button = new Button("Count Ballots");
 		countBallots_Button.setOnAction(this);
-		countBallots_Button.setPrefSize(100, 40);
+		countBallots_Button.setPrefSize(110, 40);
 		countBallots_Button.setTranslateX(10);
 
 		this.getChildren().add(ballotTitle);
@@ -83,7 +84,7 @@ public class BallotView extends VBox implements EventHandler<ActionEvent> {
 			stackReference.readFile();
 			String ballotList = stackReference.createOutput();
 			ballotStack_TA.setText(ballotList);
-		} catch (FileNotFoundException ex) {
+		} catch (FileNotFoundException e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("File Not Found");
 			alert.setContentText("File was not found. Please use a valid text file");
@@ -110,7 +111,12 @@ public class BallotView extends VBox implements EventHandler<ActionEvent> {
 				String outputText = stackReference.countBallot(mainReference);
 				ballotStack_TA.setText(outputText);
 			}
-		} catch (IOException ex) {
+		} catch (IllegalArgumentException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Ballot Error");
+			alert.setContentText("There are no ballots left to count!");
+			alert.showAndWait();
+		} catch (IOException e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("File Error");
 			alert.setContentText("An thrown with your file. Please use a valid text file");

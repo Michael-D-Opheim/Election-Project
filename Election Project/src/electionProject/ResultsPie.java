@@ -34,7 +34,6 @@ public class ResultsPie extends VBox {
 	private TextField myVotes_TF;
 
 	private Main mainReference;
-	
 
 	public ResultsPie(Main mainReference) {
 		super();
@@ -97,21 +96,18 @@ public class ResultsPie extends VBox {
 		return Math.round(votesPercent * 100.0) / 100.0;
 	}
 
-	public void setPieData() {
-		opponentVotes += 10;
-		opponentChartData.setPieValue(opponentVotes);
-		pie.setData(pieData);
-	}
+	public void setPieData(int candidate, int votes) {
+		if (candidate == 0) {
+			myVotes += votes;
+			myChartData.setPieValue(myVotes);
 
-	public void updateVotes(int candidate, int votes) {
-//		if (candidate == 1) {
-//			myVotes += votes;
-//			myChartData.setPieValue(myVotes);
-//
-//		} else if (candidate == 2) {
-//			opponentVotes += votes;
-//			opponentChartData.setPieValue(opponentVotes);
-//		}
-//		pie.setData(pieData);
+		} else if (candidate == 1) {
+			opponentVotes += votes;
+			opponentChartData.setPieValue(opponentVotes);
+		}
+		pie.setData(pieData);
+		myVotes_TF.setText(percentageCalculator(myVotes) + "%");
+		opponentVotes_TF.setText(percentageCalculator(opponentVotes) + "%");
+
 	}
 }

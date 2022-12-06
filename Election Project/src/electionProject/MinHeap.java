@@ -147,10 +147,14 @@ public class MinHeap {
 	}
 	
 	public void deleteTopTask() throws IOException {
+		if (size != 1) {
 		String[] lastNode = taskHeap.get(size - 1);
 		taskHeap.set(0, lastNode);
 		taskHeap.remove(size - 1);
 		size--;
 		writeHeapToFile();
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 }

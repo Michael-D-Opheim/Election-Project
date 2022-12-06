@@ -32,7 +32,7 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 
 	private Main mainReference;
 
-	private DCLinkedList linkedListRef;
+	private DCLinkedList LLReference;
 
 	private Runnable displayThread;
 
@@ -40,7 +40,7 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 		super();
 		this.mainReference = mainReference;
 
-		linkedListRef = new DCLinkedList();
+		LLReference = new DCLinkedList();
 
 		Label headlinesTitle = new Label("Current Headlines");
 		headlinesTitle.setFont(Font.font("Arial", FontWeight.BOLD, 24));
@@ -90,7 +90,7 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 		displayThread = new Runnable() {
 			@Override
 			public void run() {
-				String currentHeadline = linkedListRef.getHeadline();
+				String currentHeadline = LLReference.getHeadline();
 				headline_TF.setText(currentHeadline);
 			}
 		};
@@ -98,14 +98,14 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 
 	public void displayHeadline() throws FileNotFoundException {
 		try {
-			linkedListRef.readFile();
+			LLReference.readFile();
 
 			setThread();
 
 			ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 			executor.scheduleAtFixedRate(displayThread, 0, 3, TimeUnit.SECONDS);
 
-		} catch (FileNotFoundException ex) {
+		} catch (FileNotFoundException e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("File Not Found");
 			alert.setContentText("File was not found. Please use a valid text file");
@@ -125,13 +125,13 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 				} else {
 					displayThread = null;
 					String userHeadline = String.valueOf(addHeadline_TF.getText());
-					linkedListRef.addHeadline(userHeadline);
+					LLReference.addHeadline(userHeadline);
 					addHeadline_TF.clear();
 					setThread();
 				}
 			} else if (event.getSource() == removeCurrentHeadline_Button) {
 				displayThread = null;
-				linkedListRef.removeHeadline();
+				LLReference.removeHeadline();
 				setThread();
 			}
 		} catch (IOException e) {

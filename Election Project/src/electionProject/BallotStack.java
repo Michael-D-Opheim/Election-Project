@@ -5,17 +5,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class BallotStack {
 
 	private Stack<String> ballotStack;
-	
+
 	private ResultsPie pieReference;
-	
+
 	private Main mainReference;
-	
+
 	public BallotStack(Main mainReference, ResultsPie pieReference) {
 		super();
 		this.mainReference = mainReference;
@@ -53,15 +54,21 @@ public class BallotStack {
 		readFile();
 		BufferedWriter file = new BufferedWriter(new FileWriter("StackFile.txt"));
 		file.write("");
-		
-		//TODO Randomize
+
 		if (!ballotStack.isEmpty()) {
 			ballotStack.pop();
-			pieReference.setPieData();
+			Random chooseCandidate = new Random();
+			Random chooseVoteCount = new Random();
+				int candidate = chooseCandidate.nextInt(2);
+				int voteCount = chooseVoteCount.nextInt(11);
+			pieReference.setPieData(candidate, voteCount);
 		}
 		String outputText = createOutput();
 		file.write(outputText);
 		file.close();
+		if (outputText == "") {
+			throw new IllegalArgumentException();
+		}
 		return outputText;
 	}
 }
