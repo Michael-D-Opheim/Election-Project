@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  * Driver for electionProjet. Creates and runs an interactive GUI for the project.
  * @author Michael Opheim
- * @version 11/28/2022
+ * @version 12/07/2022
  */ //TODO check over comments, dates
 public class Main extends Application {
 
@@ -44,28 +44,28 @@ public class Main extends Application {
 		    titleBox.getChildren().add(title); // add title to HBox
 			
 		    // Adds a section in the GUI for user task view
-		    // This is the front-end for the Priority Task Queue
-			UserTaskView userTaskViewBox = new UserTaskView(this);
+		    // This is the front-end for the priority task queue
+			UserTaskView userTaskViewBox = new UserTaskView();
 			userTaskViewBox.setPrefSize(350, 600);
 			userTaskViewBox.setStyle("-fx-background-color: #F08080");
 			root.setLeft(userTaskViewBox);
 			
 			// Adds a section in the GUI for the results pie chart
-			ResultsPie pieBox = new ResultsPie(this);
+			ResultsPie pieBox = new ResultsPie();
 			pieBox.setPrefSize(500, 600);
 			pieBox.setAlignment(Pos.TOP_CENTER); // allign all of the text in the section about the top center
 			root.setCenter(pieBox);
 			
 			// Adds a section in the GUI for the ballots view
-			// This is the front-end for the Stack; here, the user will be able to add and count ballots
-			BallotView ballotBox = new BallotView(this, pieBox);
+			// This is the front-end for the stack; here, the user will be able to add and count ballots
+			BallotView ballotBox = new BallotView(pieBox);
 			ballotBox.setPrefSize(350, 600);
 			ballotBox.setStyle("-fx-background-color: #F08080;");
 			root.setRight(ballotBox);
 			
 			// Adds a section in the GUI for the headlines
 			// This is the front-end for the circularly, doubly-linked list.
-			Headlines headlinesBox = new Headlines(this);
+			Headlines headlinesBox = new Headlines();
 			headlinesBox.setStyle("-fx-background-color: #B0E0E6");
 			headlinesBox.setPrefSize(1200, 200);
 			root.setBottom(headlinesBox);
