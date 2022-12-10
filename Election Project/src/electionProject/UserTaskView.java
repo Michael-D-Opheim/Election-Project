@@ -23,7 +23,7 @@ import javafx.scene.text.FontWeight;
  * task to the task list or delete the top task from the task list.
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  */
 public class UserTaskView extends VBox implements EventHandler<ActionEvent> {
 
@@ -203,6 +203,14 @@ public class UserTaskView extends VBox implements EventHandler<ActionEvent> {
 					alert.setTitle("Input Error");
 					alert.setContentText(
 							"Input Error! You must have a valid task and corresponding priority number to input.");
+					alert.showAndWait();
+					
+				// If the users priority number is less than or equal to 0 or greater than 100, alert them
+				} else if (Integer.parseInt(userPriority_TF.getText()) <= 0 || Integer.parseInt(userPriority_TF.getText()) > 100) {
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Input Error");
+					alert.setContentText(
+							"Input Error! Your priority number must be between 1 and 100!");
 					alert.showAndWait();
 					
 				// Otherwise pass the task and its priority number to the back-end and create some new text for outputting in the GUI

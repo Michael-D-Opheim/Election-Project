@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
  * tallies using JavaFX’s PieChart API
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  */
 public class ResultsPie extends VBox {
 

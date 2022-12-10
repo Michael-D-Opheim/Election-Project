@@ -22,7 +22,7 @@ import javafx.scene.text.FontWeight;
  * or delete a ballot from a corresponding ballot stack.
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  *
  */
 public class BallotView extends VBox implements EventHandler<ActionEvent> {

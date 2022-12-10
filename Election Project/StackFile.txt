@@ -1,3 +1,4 @@
-Chemistry Department Vote
-CS Department Vote
-Math Department Vote
+Math Vote
+Chemistry Vote
+CS Vote
+Cray Vote

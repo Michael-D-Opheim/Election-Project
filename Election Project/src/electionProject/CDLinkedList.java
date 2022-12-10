@@ -17,7 +17,7 @@ import java.util.Scanner;
  * same relevant text file
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  */
 public class CDLinkedList {
 
@@ -105,11 +105,6 @@ public class CDLinkedList {
 	 */
 	public String getHeadline() {
 		
-		// If there are no headlines in the linked list, return some placeholder text for the display
-		if (size == 0) {
-			return "No New Headlines";
-		}
-		
 		// Keep track of which headline is the current headline in the thread
 		currentHeadlineNode = currentHeadlineNode.next;
 		if (currentHeadlineNode == null) {
@@ -143,20 +138,16 @@ public class CDLinkedList {
 	 */
 	public void removeHeadline() throws IOException {
 		
-		//Make sure there are headlines in the linked list
-		if (size == 0) {
+		//Make sure there are at least two headlines in the linked list (to keep at least one headline in the display at all times)
+		if (size <= 1) {
 			throw new IllegalArgumentException();
+			
 		} else {
 			
 			size--;
-			
-			// If there are no headlines left after a headline is removed, reset the linked list
-			if (size == 0) {
-				headNode.next = tailNode;
-				tailNode.previous = headNode;
 				
 			// If the removed headline was the last node in the linked list...
-			} else if (currentHeadlineNode.next == null) {
+			if (currentHeadlineNode.next == null) {
 				
 				// Connect the new last node to the first node in the linked list
 				currentHeadlineNode.previous.next = currentHeadlineNode.next;

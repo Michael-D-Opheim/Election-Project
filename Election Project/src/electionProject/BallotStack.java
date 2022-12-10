@@ -18,7 +18,7 @@ import java.util.Stack;
  * will handle inputting it into the same relevant text file.
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  *
  */
 public class BallotStack {
@@ -89,6 +89,7 @@ public class BallotStack {
 		file.close();
 	}
 
+	@SuppressWarnings("resource")
 	/**
 	 * Removes the top ballot in the ballot stack. Afterwards, this method creates a
 	 * random number of “votes”, which will be given to a random candidate and
@@ -98,8 +99,7 @@ public class BallotStack {
 	 * @throws IOException if errors are thrown when writing to the text file
 	 */
 	public String countBallot() throws IOException {
-		readFile(); // read the text file and ensure that we have a stack (even if a text file is
-					// empty)
+		readFile(); // read the text file and ensure that we have a stack (even if a text file is empty)
 
 		// Clear the text file
 		BufferedWriter file = new BufferedWriter(new FileWriter("StackFile.txt"));

@@ -22,7 +22,7 @@ import javafx.scene.text.FontWeight;
 /**
  * This class is responsible for creating the front-end of the headlines section of the GUI
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  */
 public class Headlines extends VBox implements EventHandler<ActionEvent> {
 
@@ -202,7 +202,7 @@ public class Headlines extends VBox implements EventHandler<ActionEvent> {
 		} catch (IllegalArgumentException e) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Headline Error");
-			alert.setContentText("There are no headlines left to remove!");
+			alert.setContentText("The last headline cannot be deleted!");
 			alert.showAndWait();
 			
 		// Create an alert if there are errors within a user's text file

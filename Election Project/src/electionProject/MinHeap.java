@@ -18,7 +18,7 @@ import java.util.Scanner;
  * file.
  * 
  * @author Michael Opheim
- * @version 12/07/2022
+ * @version 12/09/2022
  */
 public class MinHeap {
 
